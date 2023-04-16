@@ -34,6 +34,6 @@ public class UserDto {
 	private String password;
 	
 	@NotNull
-	@NotEmpty(message = "about is and About can't be null value jhs")
+	@NotEmpty(message = "about is and About can't be null value ")
 	private String about;
 }
