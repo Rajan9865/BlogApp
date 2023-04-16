@@ -24,7 +24,7 @@ public class UserDto {
 	private String name;
 	
 	@Email
-	@NotNull(message = "Email  id is required and can't be null value ")
+	@NotNull(message = "Email  id is required and can't be null  ")
 	@Column(name = "email_id")
 	private String email;
 	
