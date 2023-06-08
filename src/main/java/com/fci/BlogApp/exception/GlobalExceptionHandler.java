@@ -1,4 +1,4 @@
-package com.fci.BlogApp.exception;
+ package com.fci.BlogApp.exception;
 
 import java.util.HashMap;
 import java.util.Map;
