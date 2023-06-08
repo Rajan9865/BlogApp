@@ -7,6 +7,10 @@ import lombok.Setter;
 @Setter
 public class ResourceNotFoundException extends RuntimeException{
 
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7808177202109072966L;
 String resourceName;
 String fieldName;
 long fieldValue;
