@@ -1,12 +1,18 @@
 package com.fci.BlogApp.entities;
 
-import org.hibernate.type.TrueFalseConverter;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.hibernate.type.TrueFalseConverter;import org.springframework.data.repository.query.parser.Part.IgnoreCaseType;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -48,4 +54,7 @@ public class User {
 //	@NotNull
 //	@NotEmpty(message = "about is required and About can't be null value")
 	private String about;
+	
+	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	private List<Post>posts=new ArrayList<>();
 }

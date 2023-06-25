@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
-import org.modelmapper.internal.bytebuddy.asm.Advice.This;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.fci.BlogApp.Services.CategoryService;
 import com.fci.BlogApp.entities.Category;
@@ -13,6 +13,7 @@ import com.fci.BlogApp.exception.ResourceNotFoundException;
 import com.fci.BlogApp.payloads.CategoryDto;
 import com.fci.BlogApp.repositories.CategoryRepo;
 
+@Service
 public class CategoryServiceImpl implements CategoryService{
 	@Autowired
 	private CategoryRepo categoryRepo;
