@@ -19,6 +19,8 @@ import com.fci.BlogApp.Services.CategoryService;
 import com.fci.BlogApp.payloads.ApiResponse;
 import com.fci.BlogApp.payloads.CategoryDto;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/categories")
 public class CategoryController {
@@ -26,7 +28,7 @@ public class CategoryController {
 	private CategoryService categoryService;
 	//create
 	@PostMapping("/")
-	public ResponseEntity<CategoryDto>createCategory(@RequestBody CategoryDto categoryDto)
+	public ResponseEntity<CategoryDto>createCategory(@Valid @RequestBody CategoryDto categoryDto)
 	{
 //		CategoryDto createCategory=this.categr 
 		CategoryDto createCategory =this.categoryService.createCategory(categoryDto);
@@ -34,7 +36,7 @@ public class CategoryController {
 	}
 	//update
 	@PutMapping("/{catId}")
-	public ResponseEntity<CategoryDto>updateCategory(@RequestBody CategoryDto categoryDto,@PathVariable Integer catId)
+	public ResponseEntity<CategoryDto>updateCategory(@Valid @RequestBody CategoryDto categoryDto,@PathVariable Integer catId)
 	{
 		CategoryDto updatedCategory=this.categoryService.updateCategory(categoryDto, catId);
 		return new ResponseEntity<CategoryDto>(updatedCategory,HttpStatus.OK);
