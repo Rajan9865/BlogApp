@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fci.BlogApp.entities.Post;
 import com.fci.BlogApp.payloads.PostDto;
+import com.fci.BlogApp.payloads.PostResponse;
 
 public interface PostService {
 	//create
@@ -17,7 +18,7 @@ public interface PostService {
 	void deletePost(Integer postId);
 	
 	//get all posts
-	List<PostDto> getAllPost(Integer pageNumber, Integer pageSize);
+	PostResponse getAllPost(Integer pageNumber, Integer pageSize, String shortBy,String sortDir);
 	
 	//get single post
 	 PostDto getPostById(Integer postId);
@@ -29,5 +30,5 @@ public interface PostService {
 	 List<PostDto>getPostByUser(Integer userId);
 	 
 	 //Search posts
-	 List<Post>searchposts(String keyword);
+	 List<PostDto>searchposts(String keyword);
 }
