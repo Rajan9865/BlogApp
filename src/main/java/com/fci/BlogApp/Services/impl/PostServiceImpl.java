@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.fci.BlogApp.Services.PostService;
@@ -17,6 +18,7 @@ import com.fci.BlogApp.entities.Post;
 import com.fci.BlogApp.entities.User;
 import com.fci.BlogApp.exception.ResourceNotFoundException;
 import com.fci.BlogApp.payloads.PostDto;
+import com.fci.BlogApp.payloads.PostResponse;
 import com.fci.BlogApp.repositories.CategoryRepo;
 import com.fci.BlogApp.repositories.PostRepo;
 import com.fci.BlogApp.repositories.UserRepo;
@@ -70,20 +72,52 @@ public class PostServiceImpl implements PostService {
 			this.postRepo.delete(post);
 	}
 
-	@Override
-	public List<PostDto> getAllPost(Integer pageNumber,Integer pageSize) {
-//		int pageSize=5;
-//		int pageNumber=2;
-		Pageable pageable=PageRequest.of(pageNumber, pageSize);
-		Page<Post> pagePost = this.postRepo.findAll(pageable);
-		List<Post>allPosts=pagePost.getContent();
-				
-//		List<Post>allPosts=this.postRepo.findAll();
-		List<PostDto>postDtos= allPosts.stream().map((post)-> this.modelMapper.map(post, PostDto.class))
-				.collect(Collectors.toList());
-		
-		return postDtos;
-	}
+	/*
+	 * @Override public PostResponse getAllPost(Integer pageNumber,Integer pageSize,
+	 * String shortBy, String sortDir) {
+	 * 
+	 * Sort sort=null; if (sortDir.equalsIgnoreCase("ASC")) {
+	 * sort=Sort.by(sortDir).ascending(); } else {
+	 * sort=Sort.by(sortDir).descending(); } Pageable
+	 * pageable=PageRequest.of(pageNumber, pageSize, sort); Page<Post> pagePost =
+	 * this.postRepo.findAll(pageable); List<Post>allPosts=pagePost.getContent();
+	 * 
+	 * // List<Post>allPosts=this.postRepo.findAll(); List<PostDto>postDtos=
+	 * allPosts.stream().map((post)-> this.modelMapper.map(post, PostDto.class))
+	 * .collect(Collectors.toList());
+	 * 
+	 * PostResponse postResponse=new PostResponse();
+	 * 
+	 * postResponse.setContent(postDtos);
+	 * postResponse.setPageNumber(pagePost.getNumber());
+	 * postResponse.setPageSize(pagePost.getSize());
+	 * postResponse.setTotalElements(pagePost.getTotalElements());
+	 * postResponse.setTotalPages(pagePost.getTotalPages());
+	 * postResponse.setLastPage(pagePost.isLast());
+	 * 
+	 * return postResponse; }
+	 */
+	
+    @Override
+    public PostResponse getAllPost(Integer pageNumber, Integer pageSize, String sortBy, String sortDir) {
+
+        Sort sort = (sortDir.equalsIgnoreCase("asc")) ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
+        Pageable p = PageRequest.of(pageNumber, pageSize, sort);
+        Page<Post> pagePost = this.postRepo.findAll(p);
+        List<Post> allPosts = pagePost.getContent();
+        List<PostDto> postDtos = allPosts.stream().map((post) -> this.modelMapper.map(post, PostDto.class))
+                .collect(Collectors.toList());
+
+        PostResponse postResponse = new PostResponse();
+        postResponse.setContent(postDtos);
+        postResponse.setPageNumber(pagePost.getNumber());
+        postResponse.setPageSize(pagePost.getSize());
+        postResponse.setTotalElements(pagePost.getTotalElements());
+        postResponse.setTotalPages(pagePost.getTotalPages());
+        postResponse.setLastPage(pagePost.isLast());
+
+        return postResponse;
+    }
 
 	@Override
 	public PostDto getPostById(Integer postId) {
@@ -114,9 +148,10 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<Post> searchposts(String keyword) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<PostDto> searchposts(String keyword) {
+		List<Post> posts = this.postRepo.findByTitleContaining(keyword);
+		List<PostDto> postDtos = posts.stream().map((post)->this.modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
+ 		return postDtos ;
 	}
 
 
