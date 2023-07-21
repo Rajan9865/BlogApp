@@ -1,5 +1,8 @@
 package com.fci.BlogApp.Controller;
-
+/**
+ * @author Rajan.kumar
+ *6:51:26 am
+ */
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -42,9 +45,15 @@ public class PostController {
 	
 	@Value("${project.image}")
 	private String path;
-	
+
+	/**
+	 * 
+	 * @param postDto
+	 * @param userId
+	 * @param categoryId
+	 * @return
+	 */
 	//create
-	
 	@PostMapping("/user/{userId}/category/{categoryId}/posts")
 	public ResponseEntity<PostDto> createPost(
 			@RequestBody PostDto postDto,
@@ -55,6 +64,11 @@ public class PostController {
 		PostDto createPost=this.postService.createPost(postDto, userId, categoryId);
 		return new ResponseEntity<PostDto>(createPost,HttpStatus.CREATED);
 	}
+	/**
+	 * 
+	 * @param userId
+	 * @return
+	 */
 	// get BY user
 	@GetMapping("/user/{userId}/posts")
 	public ResponseEntity<List<PostDto>>getPostByUser(@PathVariable Integer userId)

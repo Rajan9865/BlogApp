@@ -1,5 +1,8 @@
 package com.fci.BlogApp.payloads;
-
+/**
+ * @author Rajan.kumar
+ *6:51:26 am
+ */
 import java.util.Date;
 
 import lombok.Getter;

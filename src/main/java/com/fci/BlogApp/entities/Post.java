@@ -1,5 +1,8 @@
 package com.fci.BlogApp.entities;
-
+/**
+ * @author Rajan.kumar
+ *6:51:26 am
+ */
 import java.util.Date;
 
 import jakarta.persistence.Column;

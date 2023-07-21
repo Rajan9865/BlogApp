@@ -1,5 +1,8 @@
 package com.fci.BlogApp.config;
-
+/**
+ * @author Rajan.kumar
+ *6:51:26 am
+ */
 public class AppConstants {
 	public static final String PAGE_NUMBER = "0";
 	public static final String PAGE_SIZE = "10";
