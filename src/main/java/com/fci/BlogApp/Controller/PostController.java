@@ -98,7 +98,7 @@ public class PostController {
 	}
 	 
 	//get post details By Id
-	@GetMapping("posts/{postId}")
+	@GetMapping("/posts/{postId}")
 	public ResponseEntity<PostDto>getPostById(@PathVariable Integer postId)
 	{
 		PostDto postDto = this.postService.getPostById(postId);
