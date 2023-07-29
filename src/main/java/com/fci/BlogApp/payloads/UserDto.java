@@ -1,4 +1,8 @@
 package com.fci.BlogApp.payloads;
+/**
+ * @author Rajan.kumar
+ *6:51:26 am
+ */
 import jakarta.persistence.Column;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
