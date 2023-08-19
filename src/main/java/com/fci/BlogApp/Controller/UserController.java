@@ -33,6 +33,11 @@ public class UserController {
 	private UserService userService;
 	
 	//post - create user 
+	/**
+	 * 
+	 * @param userDto
+	 * @return
+	 */
 	@PostMapping("/create")
 	public ResponseEntity<UserDto>createUser(@Valid @RequestBody UserDto userDto)
 	{
@@ -42,6 +47,12 @@ public class UserController {
 	}
 	
 	//put -Update user
+	/**
+	 * 
+	 * @param userDto
+	 * @param uid
+	 * @return
+	 */
 	@PutMapping("/{userId}")
 	public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto,@PathVariable("userId") Integer uid)
 	{
@@ -50,6 +61,11 @@ public class UserController {
 		
 	}
 	// Delete - delete user
+	/**
+	 * 
+	 * @param uid
+	 * @return
+	 */
 	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("/{userId}")
 	public ResponseEntity<ApiResponse> deleteUser(@PathVariable("userId") Integer uid)
@@ -59,7 +75,10 @@ public class UserController {
 	}
 	
 	//Get -- user Get 
-	
+	/**
+	 * 
+	 * @return
+	 */
 	@GetMapping("/")
 	public ResponseEntity<List<UserDto>> getAllusers()
 	{
@@ -67,6 +86,11 @@ public class UserController {
 	}
 	
 	// Get -- Single user get
+	/**
+	 * 
+	 * @param userId
+	 * @return
+	 */
 	@GetMapping("/{userId}")
 	public ResponseEntity<UserDto> getSingleUser(@PathVariable Integer userId)
 	{

@@ -32,7 +32,7 @@ import com.fci.BlogApp.payloads.UserDto;
 import com.fci.BlogApp.repositories.UserRepo;
 
 /**
- * @author deby7
+ * @author Rajan.kumars
  *8:05:52 am
  *2023
  *BlogApp
@@ -83,7 +83,11 @@ public class AuthController {
 	}
 
 	// register new user api
-
+	/**
+	 * 
+	 * @param userDto
+	 * @return
+	 */
 	@PostMapping("/register")
 	public ResponseEntity<UserDto> registerUser(@Valid @RequestBody UserDto userDto) {
 		UserDto registeredUser = this.userService.registerNewUser(userDto);
@@ -95,7 +99,11 @@ public class AuthController {
 	private UserRepo userRepo;
 	@Autowired
 	private ModelMapper mapper;
-
+	/**
+	 * 
+	 * @param principal
+	 * @return
+	 */
 	@GetMapping("/current-user/")
 	public ResponseEntity<UserDto> getUser(Principal principal) {
 		User user = this.userRepo.findByEmail(principal.getName()).get();

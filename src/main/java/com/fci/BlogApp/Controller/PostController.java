@@ -78,6 +78,11 @@ public class PostController {
 	}
 
 	// get by categeory 
+	/**
+	 * 
+	 * @param categoryId
+	 * @return
+	 */
 	@GetMapping("/category/{categoryId}/posts")
 	public ResponseEntity<List<PostDto>>getPostByCategory(@PathVariable Integer categoryId)
 	{
@@ -86,6 +91,14 @@ public class PostController {
 	}
 	
 	//Get all posts
+	/**
+	 * 
+	 * @param pageNumber
+	 * @param pageSize
+	 * @param sortBy
+	 * @param sortDir
+	 * @return
+	 */
 	@GetMapping("/posts")
 	public ResponseEntity<PostResponse> getAllPost(
 			@RequestParam(value = "pageNumber", defaultValue = AppConstants.PAGE_NUMBER, required = false) Integer pageNumber,
@@ -98,6 +111,11 @@ public class PostController {
 	}
 	 
 	//get post details By Id
+	/**
+	 * 
+	 * @param postId
+	 * @return
+	 */
 	@GetMapping("/posts/{postId}")
 	public ResponseEntity<PostDto>getPostById(@PathVariable Integer postId)
 	{
@@ -106,6 +124,11 @@ public class PostController {
 	}
 	
 	// Delete post
+	/**
+	 * 
+	 * @param postId
+	 * @return
+	 */
 	@DeleteMapping("/posts/{postId}")
 	public ApiResponse deletePost(@PathVariable Integer postId)
 	{
@@ -114,6 +137,12 @@ public class PostController {
 	}
 	
 	// Update post 
+	/**
+	 * 
+	 * @param postDto
+	 * @param postId
+	 * @return
+	 */
 	@PutMapping("/posts/{postId}")
 	public ResponseEntity<PostDto>updatePost(@RequestBody PostDto postDto, @PathVariable Integer postId)
 	{
@@ -122,6 +151,11 @@ public class PostController {
 	} 
 	
 	// Searching Data
+	/**
+	 * 
+	 * @param keywords
+	 * @return
+	 */
 	@GetMapping("/posts/search/{keywords}")
 	public ResponseEntity<List<PostDto>>searchPostByTitle(
 			@PathVariable("keywords") String keywords)
@@ -131,7 +165,13 @@ public class PostController {
 	}
 	
 //	Post Image upload
-	
+	/**
+	 * 
+	 * @param image
+	 * @param postId
+	 * @return
+	 * @throws IOException
+	 */
 	@PostMapping("/posts/image/upload/{postId}")
 	public ResponseEntity<PostDto>uploadPostImage(
 			@RequestParam("image") MultipartFile image,
@@ -146,7 +186,11 @@ public class PostController {
 		return new ResponseEntity<PostDto>(updatePost,HttpStatus.OK);
 	}
 	
-
+	/**
+	 * 
+	 * @param imageName
+	 * @param response
+	 */
 	@GetMapping(value = "/post/image/{imageName}", produces = MediaType.IMAGE_JPEG_VALUE)
 	public void downloadImage(@PathVariable("imageName") String imageName, HttpServletResponse response) {
 	    try (InputStream resource = this.fileService.getResource(path, imageName);
