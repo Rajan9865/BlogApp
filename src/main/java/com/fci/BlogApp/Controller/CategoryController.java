@@ -6,7 +6,8 @@ package com.fci.BlogApp.Controller;
 
 import java.util.List;
 
-import org.aspectj.weaver.NewConstructorTypeMunger;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fci.BlogApp.Services.CategoryService;
 import com.fci.BlogApp.payloads.ApiResponse;
 import com.fci.BlogApp.payloads.CategoryDto;
-
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/categories")

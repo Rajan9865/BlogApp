@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -30,8 +32,6 @@ import com.fci.BlogApp.config.AppConstants;
 import com.fci.BlogApp.payloads.ApiResponse;
 import com.fci.BlogApp.payloads.PostDto;
 import com.fci.BlogApp.payloads.PostResponse;
-
-import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/api")
