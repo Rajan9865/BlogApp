@@ -1,6 +1,9 @@
 package com.fci.BlogApp;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +53,9 @@ public class BlogAppApplication implements CommandLineRunner {
 			role1.setId(AppConstants.NORMAL_USER);
 			role1.setName("ROLE_NORMAL");
 
-			List<Role> roles = List.of(role, role1);
+//			List<Role> roles = List.of(role, role1);
+//			List<Role>roles=Arrays.asList(role,role1);
+			List<Role>roles=Stream.of(role,role1).collect(Collectors.toList());
 
 			List<Role> result = this.roleRepo.saveAll(roles);
 
