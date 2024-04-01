@@ -31,6 +31,8 @@ import com.fci.BlogApp.payloads.JwtAuthResponse;
 import com.fci.BlogApp.payloads.UserDto;
 import com.fci.BlogApp.repositories.UserRepo;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * @author Rajan.kumars
  *8:05:52 am
@@ -38,6 +40,7 @@ import com.fci.BlogApp.repositories.UserRepo;
  *BlogApp
  *TODO
  */
+@Slf4j
 @RestController
 @RequestMapping("/api/v1/auth/")
 public class AuthController {
@@ -53,6 +56,12 @@ public class AuthController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private UserRepo userRepo;
+	
+	@Autowired
+	private ModelMapper mapper;
 
 	@PostMapping("/login")
 	public ResponseEntity<JwtAuthResponse> createToken(@RequestBody JwtAuthRequest request) throws Exception {
@@ -76,7 +85,8 @@ public class AuthController {
 			this.authenticationManager.authenticate(authenticationToken);
 
 		} catch (BadCredentialsException e) {
-			System.out.println("Invalid Detials !!");
+//			System.out.println("Invalid Detials !!");
+			log.info("Invalid Detials !!");
 			throw new ApiException("Invalid username or password !!");
 		}
 
@@ -95,10 +105,7 @@ public class AuthController {
 	}
 
 	// get loggedin user data
-	@Autowired
-	private UserRepo userRepo;
-	@Autowired
-	private ModelMapper mapper;
+	
 	/**
 	 * 
 	 * @param principal

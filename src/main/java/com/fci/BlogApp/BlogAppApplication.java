@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.apache.log4j.LogSF;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -16,10 +17,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.fci.BlogApp.config.AppConstants;
 import com.fci.BlogApp.entities.Role;
 import com.fci.BlogApp.repositories.RoleRepo;
+
+import lombok.extern.slf4j.Slf4j;
 /**
  * @author Rajan.kumar
  *6:51:26 am
  */
+@Slf4j
 @SpringBootApplication
 public class BlogAppApplication implements CommandLineRunner {
 	
@@ -60,9 +64,9 @@ public class BlogAppApplication implements CommandLineRunner {
 			List<Role> result = this.roleRepo.saveAll(roles);
 
 			result.forEach(r -> {
-				System.out.println(r.getName());
+//				System.out.println(r.getName());
+				log.info("get name {}",r.getName());
 			});
-
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
