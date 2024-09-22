@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.fci.BlogApp.repositories.UserRepo;
+import com.rajan.BlogApp.repositories.UserRepo;
 
 @SpringBootTest
 class BlogAppApplicationTests {
@@ -21,7 +21,7 @@ class BlogAppApplicationTests {
 	public void repoTest()
 	{
 		String ClassName =this.userRepo.getClass().getName();
-		String packName=this.userRepo.getClass().getPackageName();
+		String packName=this.userRepo.getClass().getName();
 		System.out.println(ClassName);
 		System.out.println(packName);
 	}
